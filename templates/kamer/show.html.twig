@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kamer{% endblock %}
+
+{% block body %}
+    <h1>Kamer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ kamer.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><img style="max-width:100px" src="{{ vich_uploader_asset(kamer, 'imageFile') }}" alt="#" /></td>
+            </tr>
+            <tr>
+                <th>Prijs</th>
+                <td>{{ kamer.prijs }}</td>
+            </tr>
+            <tr>
+                <th>Naam</th>
+                <td>{{ kamer.naam }}</td>
+            </tr>
+            <tr>
+                <th>Soort</th>
+                <td>{{ kamer.soort }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('kamer_index') }}">back to list</a>
+
+    <a href="{{ path('kamer_edit', {'id': kamer.id}) }}">edit</a>
+
+    {{ include('kamer/_delete_form.html.twig') }}
+{% endblock %}

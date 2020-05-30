@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+
+    <div class="container" style="margin-top: 100px;">
+
+        <h2>Beschikbare Kamers Voor:</h2>
+        <h4><span>In: {{ incheck|date("d-m-Y") }} - Uit: {{ uitcheck|date("d-m-Y") }} </span></h4>
+        <h4>Personen: {{ personen }}</h4>
+        <div class="row w-100" style="padding-top: 75px;">
+            <div class="col-12">
+
+                {#{% for reservering in reserveringen %}#}
+                        {#{% if date(reservering.checkindate) < date(incheck) and date(reservering.checkoutdate) > date(uitcheck)  %}#}
+                             {#gereserveerd#}
+                            {#<p>{{ reservering.kamer.naam }}</p>#}
+
+                        {#{% else %}#}
+                             {#beschikbaar#}
+                            {#<p>{{ reservering.kamer.naam }}</p>#}
+                        {#{% endif %}#}
+                {#{% endfor %}#}
+
+
+                {#{% if  personen == 6 %}#}
+                    {#{% for kamer in kamers %}#}
+                        {#{% if kamer.soort == "Mega" or "mega" %}#}
+                            {#true#}
+                            {#{% else %}#}
+                            {#false#}
+                        {#{% endif %}#}
+                    {#{% endfor %}#}
+                {#{% endif %}#}
+
+                {% for kamer in kamers %}
+
+                    <div class="row w-100">
+
+                        <div class="col-3">
+                            <img style="max-width:100%;" src="{{ asset('images/Lacasserai-min.jpg') }}" alt="LaCasserai"/>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="col-12">
+                               Kamer: {{ kamer.naam }}
+                            </div>
+                            <div class="col-12">
+                                Kamer Prijs: € {{ kamer.prijs }},-
+                            </div>
+                            <br>
+                            <div class="col-6">
+                                Soort Kamer: {{ kamer.soort.omschrijving }}
+                            </div>
+                            <div class="col-6">
+                                Soort Prijs: € {{ kamer.soort.meerprijs }},-
+                            </div>
+                        </div>
+
+                        <div class="col-3" style="display: flex;
+    justify-content: center;
+    align-items: flex-end;">
+                            <a href="{{ path('boek_kamer',{'kamer': kamer.naam,'id': kamer.id}) }}">Boek deze kamer</a>
+                        </div>
+
+                        <div class="col-12">
+                            <hr style="background-color: black;">
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
